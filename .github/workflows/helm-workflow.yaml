@@ -36,6 +36,7 @@ jobs:
         with:
           delete-branch: true
           title: "Mirror ${{ steps.list-changed.outputs }}"
+          branch: ${{ github.ref }}
           base: main
 
       - name: Run chart-testing (lint)
