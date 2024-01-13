@@ -1,0 +1,86 @@
+include:
+  - kind: Charts
+    path: ./charts.yaml
+
+mirrors:
+  - name: badhouseplants-git
+    git:
+      url: git@github.com:allanger/badhouseplants-chart.git
+      branch: upgrade-{{ name }}-to-{{ version }}
+      path: charts/{{ name }}
+      git_dir: repo-{{ name }}-{{ time }}
+      commit: |-
+        chore: mirror {{ name }}-{{ version }}
+
+        upstream_repo: {{ repo_url }}
+
+repositories:
+  - name: metrics-server
+    helm:
+      url: https://kubernetes-sigs.github.io/metrics-server/
+  - name: jetstack
+    helm:
+      url: https://charts.jetstack.io
+  - name: istio
+    helm:
+      url: https://istio-release.storage.googleapis.com/charts
+  - name: drone
+    helm:
+      url: https://charts.drone.io
+  - name: bitnami
+    helm:
+      url: https://charts.bitnami.com/bitnami
+  - name: minio
+    helm:
+      url: https://charts.min.io/
+  - name: minecraft-server-charts
+    helm:
+      url: https://itzg.github.io/minecraft-server-charts/
+  - name: longhorn
+    helm:
+      url: https://charts.longhorn.io
+  - name: gitea
+    helm:
+      url: https://dl.gitea.io/charts/
+  - name: ananace-charts
+    helm:
+      url: https://ananace.gitlab.io/charts
+  - name: argo
+    helm:
+      url: https://argoproj.github.io/argo-helm
+  - name: bedag
+    helm:
+      url: https://bedag.github.io/helm-charts/
+  - name: metallb
+    helm:
+      url: https://metallb.github.io/metallb
+  - name: prometheus-community
+    helm:
+      url: https://prometheus-community.github.io/helm-charts
+  - name: grafana
+    helm:
+      url: https://grafana.github.io/helm-charts
+  - name: bitwarden
+    helm:
+      url: https://constin.github.io/vaultwarden-helm/
+  - name: db-operator
+    helm:
+      url: https://db-operator.github.io/charts
+  - name: allanger-gitea
+    helm:
+      url: https://git.badhouseplants.net/api/packages/allanger/helm
+  - name: badhouseplants
+    helm:
+      url: https://badhouseplants.github.io/helm-charts/
+  - name: woodpecker
+    helm:
+      url: https://woodpecker-ci.org
+  - name: firefly-iii
+    helm:
+      url: https://firefly-iii.github.io/kubernetes/
+  - name: emberstack
+    helm:
+      url: https://emberstack.github.io/helm-charts
+  - name: gabe565
+    helm:
+      url: https://charts.gabe565.com

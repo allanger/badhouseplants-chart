@@ -1,0 +1,155 @@
+- repository: drone
+  name: drone
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: drone
+  name: drone-runner-docker
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: longhorn
+  name: longhorn
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: argo
+  name: argo-cd
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: bitnami
+  name: wordpress
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: minecraft-server-charts
+  name: minecraft
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: gitea
+  name: gitea
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: ananace-charts
+  name: funkwhale
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: prometheus-community
+  name: kube-prometheus-stack
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: grafana
+  name: loki
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: grafana
+  name: promtail
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: bitwarden
+  name: vaultwarden
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: bitnami
+  name: redis
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: bitnami
+  name: postgresql
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: db-operator
+  name: db-operator
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: db-operator
+  name: db-instances
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: bitnami
+  name: mysql
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: allanger-gitea
+  name: docker-mailserver
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: bedag
+  name: raw
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: allanger-gitea
+  name: vaultwarden
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: woodpecker
+  name: woodpecker
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: allanger-gitea
+  name: openvpn-xor
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: gabe565
+  name: tandoor
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: metrics-server
+  name: metrics-server
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: istio
+  name: base
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: istio
+  name: gateway
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: istio
+  name: istiod
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: jetstack
+  name: cert-manager
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: minio
+  name: minio
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: metallb
+  name: metallb
+  version: latest
+  mirrors:
+    - badhouseplants-git
+- repository: emberstack
+  name: reflector
+  version: latest
+  mirrors:
+    - badhouseplants-git
