@@ -41,6 +41,7 @@ jobs:
           base: main
 
       - uses: peter-evans/enable-pull-request-automerge@v3
+        if: github.ref != 'refs/heads/main'
         with:
           pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
           merge-method: squash
