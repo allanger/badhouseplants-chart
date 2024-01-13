@@ -2,11 +2,6 @@
 name: Helm
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   helm-jobs:
