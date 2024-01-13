@@ -9,6 +9,8 @@ mirrors:
       branch: upgrade-{{ name }}-to-{{ version }}
       path: charts/{{ name }}
       git_dir: repo-{{ name }}-{{ time }}
+      default_branch: main
+      rebase: true
       commit: |-
         chore: mirror {{ name }}-{{ version }}
 

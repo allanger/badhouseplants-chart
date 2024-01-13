@@ -36,6 +36,7 @@ jobs:
         with:
           delete-branch: true
           title: "Mirror ${{ steps.list-changed.outputs.changed }}"
+          base: main
 
       - name: Run chart-testing (lint)
         if: steps.list-changed.outputs.changed
