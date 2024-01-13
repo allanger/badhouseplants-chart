@@ -1,0 +1,96 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "vaultwarden.fullname" . }}
+  labels:
+    {{- include "vaultwarden.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "vaultwarden.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
+      {{- end }}
+      labels:
+        {{- include "vaultwarden.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if .Values.vaultwarden.storage.enabled }}
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ include "vaultwarden.fullname" . }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          livenessProbe:
+            exec:
+              command:
+                - sh 
+                - /healthcheck.sh
+          readinessProbe:
+            exec:
+              command:
+                - sh 
+                - /healthcheck.sh
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "vaultwarden.fullname" . }}
+          env:
+            {{- if or (.Values.vaultwarden.smtp.password.value) (.Values.vaultwarden.smtp.password.existingSecretKey )}}
+            - name: SMTP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.vaultwarden.smtp.password.existingSecret | default ( printf "%s-smtp" ( include "vaultwarden.fullname" . )) }}
+                  key: {{ default "SMTP_PASSWORD" .Values.vaultwarden.smtp.password.existingSecretKey }}
+            {{- end }}
+            - name: ADMIN_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.vaultwarden.adminToken.existingSecret | default ( printf "%s-admin-token" ( include "vaultwarden.fullname" . )) }}
+                  key: {{ default "ADMIN_TOKEN" .Values.vaultwarden.adminToken.existingSecretKey }}
+            {{- if ne "default" .Values.vaultwarden.database.type }}
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.vaultwarden.database.existingSecret | default ( printf "%s-db-creds" ( include "vaultwarden.fullname" . ))  }}
+                  key: {{ default "DATABASE_URL" .Values.vaultwarden.database.existingSecretKey }}
+            {{- end }}
+          {{- if .Values.vaultwarden.storage.enabled }}
+          volumeMounts:
+            - mountPath: {{ .Values.vaultwarden.storage.dataDir }}
+              name: data
+          {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
