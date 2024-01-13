@@ -1,0 +1,21 @@
+annotations:
+  xor_version: 4.0.0beta13
+apiVersion: v2
+appVersion: v2.6.8
+description: A Helm chart for deploying OpenVPN with the XOR patch
+keywords:
+- OpenVPN
+- VPN
+- XOR
+maintainers:
+- email: allanger@zohomail.com
+  name: allanger
+  url: https://badhouseplants.net
+name: openvpn-xor
+sources:
+- https://git.badhouseplants.net/allanger/container-openvpn
+- https://github.com/kylemanna/docker-openvpn
+- https://github.com/Tunnelblick/Tunnelblick
+- https://github.com/OpenVPN/openvpn
+type: application
+version: 1.1.0
