@@ -1,0 +1,24 @@
+---
+# ----------------------------------------------
+# -- Update the helm chart
+# ----------------------------------------------
+kind: pipeline
+type: docker
+name: Publish the helm chart
+
+trigger:
+  event:
+    - push
+
+steps:
+  - name: Publish the Helm chart
+    image: alpine/helm
+    environment:
+      GITEA_TOKEN:
+        from_secret: GITEA_TOKEN
+    commands:
+      - helm plugin install https://github.com/chartmuseum/helm-push
+      - helm package . -d chart-package
+      - helm repo add  --username allanger --password $GITEA_TOKEN docker-mailserver https://git.badhouseplants.net/api/packages/allanger/helm
+      - helm cm-push "./chart-package/$(ls chart-package)" docker-mailserver
+
