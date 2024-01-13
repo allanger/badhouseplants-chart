@@ -53,11 +53,6 @@
   version: latest
   mirrors:
     - badhouseplants-git
-- repository: bitwarden
-  name: vaultwarden
-  version: latest
-  mirrors:
-    - badhouseplants-git
 - repository: bitnami
   name: redis
   version: latest
