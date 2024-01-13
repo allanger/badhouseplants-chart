@@ -31,14 +31,19 @@ jobs:
           echo changed=$(ct list-changed --target-branch ${{ github.event.repository.default_branch }}) > "${GITHUB_OUTPUT}"
 
       - name: Create pull request
+        id: create-pr
         if: github.ref != 'refs/heads/main'
         uses: peter-evans/create-pull-request@v5
         with:
           delete-branch: true
-          title: "Mirror ${{ steps.list-changed.outputs }}"
+          title: "Mirror ${{ steps.list-changed.outputs.changed }}"
           branch: ${{ github.ref }}
           base: main
 
+      - uses: peter-evans/enable-pull-request-automerge@v3
+        with:
+          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+      
       - name: Run chart-testing (lint)
         if: steps.list-changed.outputs.changed != ''
         run: ct lint --target-branch ${{ github.event.repository.default_branch }} --validate-maintainers=false
