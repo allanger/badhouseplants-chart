@@ -1,0 +1,939 @@
+apiVersion: v1
+entries:
+  argo-cd:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: DRY cleanup of ServiceAccounts
+      artifacthub.io/signKey: |
+        fingerprint: 2B8F22F57260EFA67BE1C5824B11F800CD9D2252
+        url: https://argoproj.github.io/argo-helm/pgp_keys.asc
+    apiVersion: v2
+    appVersion: v2.9.3
+    created: "2024-01-13T15:12:57.96007899Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.23.0
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 04c7d234a73bc14da16aff061b1ca6d6c162dcec484417d933e428ffb32b69b6
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.23.0-0'
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/argo-cd-5.52.1/argo-cd-5.52.1.tgz
+    version: 5.52.1
+  base:
+  - apiVersion: v1
+    appVersion: 1.20.2
+    created: "2024-01-13T15:12:58.081435011Z"
+    description: Helm chart for deploying Istio cluster resources and CRDs
+    digest: ebf14ce1b1fcdca79aaea43267f8df18e37bca54f75af8187736a8371a83952c
+    icon: https://istio.io/latest/favicons/android-192x192.png
+    keywords:
+    - istio
+    name: base
+    sources:
+    - https://github.com/istio/istio
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/base-1.20.2/base-1.20.2.tgz
+    version: 1.20.2
+  cert-manager:
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/prerelease: "false"
+      artifacthub.io/signKey: |
+        fingerprint: 1020CF3C033D4F35BAE1C19E1226061C665DF13E
+        url: https://cert-manager.io/public-keys/cert-manager-keyring-2021-09-20-1020CF3C033D4F35BAE1C19E1226061C665DF13E.gpg
+    apiVersion: v1
+    appVersion: v1.13.3
+    created: "2024-01-13T15:12:58.19133406Z"
+    description: A Helm chart for cert-manager
+    digest: f51de72115c1fb80bc890b9626cbdfc32e7fada636a73b7d3e577c21392b76fa
+    home: https://github.com/cert-manager/cert-manager
+    icon: https://raw.githubusercontent.com/cert-manager/cert-manager/d53c0b9270f8cd90d908460d69502694e1838f5f/logo/logo-small.png
+    keywords:
+    - cert-manager
+    - kube-lego
+    - letsencrypt
+    - tls
+    kubeVersion: '>= 1.22.0-0'
+    maintainers:
+    - email: cert-manager-maintainers@googlegroups.com
+      name: cert-manager-maintainers
+      url: https://cert-manager.io
+    name: cert-manager
+    sources:
+    - https://github.com/cert-manager/cert-manager
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/cert-manager-v1.13.3/cert-manager-v1.13.3.tgz
+    version: v1.13.3
+  db-instances:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2024-01-13T15:12:58.315702927Z"
+    description: Database Instances for db operator
+    digest: 5261ac37a885fd2bc154bf1a736bd2b2a9ef9a5cdf5441ae6c2728cb853bc722
+    name: db-instances
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/db-instances-2.2.0/db-instances-2.2.0.tgz
+    version: 2.2.0
+  db-operator:
+  - apiVersion: v2
+    appVersion: 2.1.1
+    created: "2024-01-13T15:12:58.451928251Z"
+    description: The DB Operator creates databases and make them available in the
+      cluster via Custom Resource.
+    digest: d5ecc18aa105db8c84c9b549d445e5c7b4e4048291b9377fb783c2a7526477f9
+    home: https://github.com/db-operator/db-operator
+    keywords:
+    - database
+    - Operator
+    - mysql
+    - postgres
+    kubeVersion: '>= 1.22-prerelease'
+    maintainers:
+    - email: allanger@zohomail.com
+      name: Nikolai Rodionov
+      url: https://badhouseplants.net
+    name: db-operator
+    sources:
+    - https://github.com/db-operator/db-operator
+    - https://github.com/db-operator/cloudish-sql
+    - https://github.com/db-operator/pgdump-gcs
+    - https://github.com/db-operator/mydump-gcs
+    type: application
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/db-operator-1.16.2/db-operator-1.16.2.tgz
+    version: 1.16.2
+  docker-mailserver:
+  - annotations:
+      artifacthub.io/changes: |
+        - Breaking : Standardized app labels to app.kubernetes.io/name for Istio workload/Cilium compatibility
+    apiVersion: v2
+    appVersion: 11.0.0
+    created: "2024-01-13T15:12:59.590511343Z"
+    dependencies:
+    - alias: haproxy
+      condition: haproxy.enabled
+      name: kubernetes-ingress
+      repository: https://haproxytech.github.io/helm-charts
+      version: 1.21.1
+    description: A fullstack but simple mailserver (smtp, imap, antispam, antivirus,
+      ssl...) using Docker.
+    digest: 8c16e6003f56c5b3e80a97246723461d02db9b88f340aecc812766372097fa35
+    home: https://github.com/webofmars/helm-docker-mailserver
+    icon: https://avatars.githubusercontent.com/u/76868633?s=400&v=4
+    keywords:
+    - mailserver
+    - postfix
+    - dovecot
+    - amavis
+    - imap
+    maintainers:
+    - email: contact@webofmars.com
+      name: webofmars
+    name: docker-mailserver
+    sources:
+    - https://github.com/docker-mailserver/docker-mailserver-helm
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/docker-mailserver-2.2.0/docker-mailserver-2.2.0.tgz
+    version: 2.2.0
+  drone:
+  - apiVersion: v1
+    appVersion: 2.20.0
+    created: "2024-01-13T15:12:59.71560749Z"
+    description: Drone is a self-service Continuous Delivery platform for busy development
+      teams
+    digest: e93ca2021fea874e40e50202da4d109df3dcc8ea9c77a1df1355514d3078536c
+    home: https://drone.io/
+    icon: https://drone.io/apple-touch-icon.png
+    keywords:
+    - continuous-delivery
+    - continuous-deployment
+    - continuous-integration
+    - docker
+    - drone
+    - drone.io
+    - go
+    kubeVersion: ^1.13.0-0
+    maintainers:
+    - email: hello@drone.io
+      name: Drone
+    name: drone
+    sources:
+    - https://github.com/drone/drone
+    - https://github.com/drone/charts
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/drone-0.6.5/drone-0.6.5.tgz
+    version: 0.6.5
+  drone-runner-docker:
+  - apiVersion: v1
+    appVersion: 1.8.1
+    created: "2024-01-13T15:12:59.830847649Z"
+    description: A Helm chart for the Drone Docker runner which uses Docker-in-Docker
+      (dind)
+    digest: 0a91a18c203663dcb66a003c1b4a9ac9181c6a7841be63749b2183ec417a51b6
+    home: https://docs.drone.io/runner/docker/overview/
+    icon: https://drone.io/apple-touch-icon.png
+    keywords:
+    - continuous-delivery
+    - continuous-deployment
+    - continuous-integration
+    - docker
+    - drone
+    - drone.io
+    - go
+    kubeVersion: ^1.13.0-0
+    maintainers:
+    - email: hello@drone.io
+      name: Drone
+    name: drone-runner-docker
+    sources:
+    - https://github.com/drone-runners/drone-runner-docker
+    - https://github.com/drone/charts
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/drone-runner-docker-0.6.2/drone-runner-docker-0.6.2.tgz
+    version: 0.6.2
+  funkwhale:
+  - apiVersion: v2
+    appVersion: 1.4.0
+    created: "2024-01-13T15:12:59.988144477Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: ^12.1.4
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: ^17.3.17
+    description: A social platform to enjoy and share music
+    digest: 22d049fa6cb6d5193081201176dff4ead38d0703b1a1fc0d7ad434d6d29ea8e7
+    icon: https://funkwhale.audio/favicon.png
+    name: funkwhale
+    type: application
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/funkwhale-2.0.5/funkwhale-2.0.5.tgz
+    version: 2.0.5
+  gateway:
+  - apiVersion: v2
+    appVersion: 1.20.2
+    created: "2024-01-13T15:13:00.109706883Z"
+    description: Helm chart for deploying Istio gateways
+    digest: d5ae2b7d488d5ddbd24bcc56e431cb4955cdd90974cf709f78515aae92c7cf72
+    icon: https://istio.io/latest/favicons/android-192x192.png
+    keywords:
+    - istio
+    - gateways
+    name: gateway
+    sources:
+    - https://github.com/istio/istio
+    type: application
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/gateway-1.20.2/gateway-1.20.2.tgz
+    version: 1.20.2
+  gitea:
+  - apiVersion: v2
+    appVersion: 1.21.3
+    created: "2024-01-13T15:13:00.28652971Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 13.2.24
+    - condition: postgresql-ha.enabled
+      name: postgresql-ha
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 12.3.3
+    - condition: redis-cluster.enabled
+      name: redis-cluster
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 9.1.3
+    description: Gitea Helm chart for Kubernetes
+    digest: df3f9fcd639e61e08b053c0cb5dfd114ab89117628b3f8237d356d5d266b7e3e
+    icon: https://gitea.com/assets/img/logo.svg
+    keywords:
+    - git
+    - issue tracker
+    - code review
+    - wiki
+    - gitea
+    - gogs
+    maintainers:
+    - email: charlie@charliedrage.com
+      name: Charlie Drage
+    - email: maintainers@gitea.io
+      name: Gitea Authors
+    - email: konrad.lother@novum-rgi.de
+      name: Konrad Lother
+    - email: lucas.hahn@novum-rgi.de
+      name: Lucas Hahn
+    - email: sk.bunsenbrenner@gmail.com
+      name: Steven Kriegler
+    - email: patrick.schratz@gmail.com
+      name: Patrick Schratz
+    name: gitea
+    sources:
+    - https://gitea.com/gitea/helm-chart
+    - https://github.com/go-gitea/gitea
+    - https://hub.docker.com/r/gitea/gitea/
+    type: application
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/gitea-10.0.2/gitea-10.0.2.tgz
+    version: 10.0.2
+  istiod:
+  - apiVersion: v1
+    appVersion: 1.20.2
+    created: "2024-01-13T15:13:00.392664345Z"
+    description: Helm chart for istio control plane
+    digest: b73c4e6d207258b9e098250342f3d186ea28fea86c42ddfdbbdff7818dc59e3e
+    icon: https://istio.io/latest/favicons/android-192x192.png
+    keywords:
+    - istio
+    - istiod
+    - istio-discovery
+    name: istiod
+    sources:
+    - https://github.com/istio/istio
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/istiod-1.20.2/istiod-1.20.2.tgz
+    version: 1.20.2
+  kube-prometheus-stack:
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/prometheus-community/helm-charts
+        - name: Upstream Project
+          url: https://github.com/prometheus-operator/kube-prometheus
+      artifacthub.io/operator: "true"
+    apiVersion: v2
+    appVersion: v0.70.0
+    created: "2024-01-13T15:13:00.55107927Z"
+    dependencies:
+    - condition: crds.enabled
+      name: crds
+      repository: ""
+      version: 0.0.0
+    - condition: kubeStateMetrics.enabled
+      name: kube-state-metrics
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 5.16.*
+    - condition: nodeExporter.enabled
+      name: prometheus-node-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 4.25.*
+    - condition: grafana.enabled
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 7.1.*
+    - condition: windowsMonitoring.enabled
+      name: prometheus-windows-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 0.2.*
+    description: kube-prometheus-stack collects Kubernetes manifests, Grafana dashboards,
+      and Prometheus rules combined with documentation and scripts to provide easy
+      to operate end-to-end Kubernetes cluster monitoring with Prometheus using the
+      Prometheus Operator.
+    digest: f27b0585192910991a3658526792d9d9f01cec6b3f393c172e979567c7831051
+    home: https://github.com/prometheus-operator/kube-prometheus
+    icon: https://raw.githubusercontent.com/prometheus/prometheus.github.io/master/assets/prometheus_logo-cb55bb5c346.png
+    keywords:
+    - operator
+    - prometheus
+    - kube-prometheus
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: andrew@quadcorps.co.uk
+      name: andrewgkew
+    - email: gianrubio@gmail.com
+      name: gianrubio
+    - email: github.gkarthiks@gmail.com
+      name: gkarthiks
+    - email: kube-prometheus-stack@sisti.pt
+      name: GMartinez-Sisti
+    - email: scott@r6by.com
+      name: scottrigby
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: quentin.bisson@gmail.com
+      name: QuentinBisson
+    name: kube-prometheus-stack
+    sources:
+    - https://github.com/prometheus-community/helm-charts
+    - https://github.com/prometheus-operator/kube-prometheus
+    type: application
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/kube-prometheus-stack-55.8.1/kube-prometheus-stack-55.8.1.tgz
+    version: 55.8.1
+  loki:
+  - apiVersion: v2
+    appVersion: 2.9.3
+    created: "2024-01-13T15:13:00.684791427Z"
+    dependencies:
+    - alias: minio
+      condition: minio.enabled
+      name: minio
+      repository: https://charts.min.io/
+      version: 4.0.15
+    - alias: grafana-agent-operator
+      condition: monitoring.selfMonitoring.grafanaAgent.installOperator
+      name: grafana-agent-operator
+      repository: https://grafana.github.io/helm-charts
+      version: 0.2.16
+    description: Helm chart for Grafana Loki in simple, scalable mode
+    digest: e7ef948bb230095b717746e6933f5fbf876a120b7dbea23fa376bc1ba8807a9f
+    home: https://grafana.github.io/helm-charts
+    icon: https://grafana.com/docs/loki/latest/logo_and_name.png
+    maintainers:
+    - name: trevorwhitney
+    - name: jeschkies
+    name: loki
+    sources:
+    - https://github.com/grafana/loki
+    - https://grafana.com/oss/loki/
+    - https://grafana.com/docs/loki/latest/
+    type: application
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/loki-5.41.6/loki-5.41.6.tgz
+    version: 5.41.6
+  longhorn:
+  - apiVersion: v1
+    appVersion: v1.5.3
+    created: "2024-01-13T15:13:00.80579068Z"
+    description: Longhorn is a distributed block storage system for Kubernetes.
+    digest: 2b412e131687e1bef7f52dc3a09427e84cc9e487c297d7baf3e6b154df6abf30
+    home: https://github.com/longhorn/longhorn
+    icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/longhorn/icon/color/longhorn-icon-color.png
+    keywords:
+    - longhorn
+    - storage
+    - distributed
+    - block
+    - device
+    - iscsi
+    - nfs
+    kubeVersion: '>=1.21.0-0'
+    maintainers:
+    - email: maintainers@longhorn.io
+      name: Longhorn maintainers
+    name: longhorn
+    sources:
+    - https://github.com/longhorn/longhorn
+    - https://github.com/longhorn/longhorn-engine
+    - https://github.com/longhorn/longhorn-instance-manager
+    - https://github.com/longhorn/longhorn-share-manager
+    - https://github.com/longhorn/longhorn-manager
+    - https://github.com/longhorn/longhorn-ui
+    - https://github.com/longhorn/longhorn-tests
+    - https://github.com/longhorn/backing-image-manager
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/longhorn-1.5.3/longhorn-1.5.3.tgz
+    version: 1.5.3
+  metallb:
+  - apiVersion: v2
+    appVersion: v0.13.12
+    created: "2024-01-13T15:13:00.914691793Z"
+    dependencies:
+    - condition: crds.enabled
+      name: crds
+      repository: ""
+      version: 0.13.12
+    description: A network load-balancer implementation for Kubernetes using standard
+      routing protocols
+    digest: 45e0a46b6c76f99cdb93110e3410600378f3ea8fec64fc65921b0f82fadf4d42
+    home: https://metallb.universe.tf
+    icon: https://metallb.universe.tf/images/logo/metallb-white.png
+    kubeVersion: '>= 1.19.0-0'
+    name: metallb
+    sources:
+    - https://github.com/metallb/metallb
+    type: application
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/metallb-0.13.12/metallb-0.13.12.tgz
+    version: 0.13.12
+  metrics-server:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: "Added default Metrics Server resource requests."
+        - kind: changed
+          description: "Updated the Metrics Server OCI image to v0.6.3."
+        - kind: changed
+          description: "Updated the addon resizer OCI image to v1.8.19."
+        - kind: changed
+          description: "Changed the default addon resizer nanny resource configuration to match the documented Metrics Server autoscaling values."
+    apiVersion: v2
+    appVersion: 0.6.4
+    created: "2024-01-13T15:13:01.042260853Z"
+    description: Metrics Server is a scalable, efficient source of container resource
+      metrics for Kubernetes built-in autoscaling pipelines.
+    digest: b0f6f6a366e039e9bd018090c18ea1261239b3d6796c65ff90724d00801fc1eb
+    home: https://github.com/kubernetes-sigs/metrics-server
+    icon: https://avatars.githubusercontent.com/u/36015203?s=400&v=4
+    keywords:
+    - kubernetes
+    - metrics-server
+    - metrics
+    maintainers:
+    - name: stevehipwell
+      url: https://github.com/stevehipwell
+    - name: krmichel
+      url: https://github.com/krmichel
+    - name: endrec
+      url: https://github.com/endrec
+    name: metrics-server
+    sources:
+    - https://github.com/kubernetes-sigs/metrics-server
+    type: application
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/metrics-server-3.11.0/metrics-server-3.11.0.tgz
+    version: 3.11.0
+  minecraft:
+  - annotations:
+      artifacthub.io/links: |
+        - name: Image source
+          url: https://github.com/itzg/docker-minecraft-server
+        - name: Image DockerHub
+          url: https://hub.docker.com/r/itzg/minecraft-server
+    apiVersion: v1
+    appVersion: SeeValues
+    created: "2024-01-13T15:13:01.156374331Z"
+    description: Minecraft server
+    digest: 3196b22585f2409455f0fb2ad2b2d1df18f6061cf2ea33053b6e53630e730d4d
+    home: https://minecraft.net/
+    keywords:
+    - game
+    - server
+    maintainers:
+    - email: gtaylor@gc-taylor.com
+      name: gtaylor
+    - email: jeff@billimek.com
+      name: billimek
+    - email: itzgeoff@gmail.com
+      name: itzg
+    - email: yannik@carbongem.com
+      name: bibz87
+    name: minecraft
+    sources:
+    - https://github.com/itzg/minecraft-server-charts
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/minecraft-4.14.0/minecraft-4.14.0.tgz
+    version: 4.14.0
+  minio:
+  - apiVersion: v1
+    appVersion: RELEASE.2024-01-11T07-46-16Z
+    created: "2024-01-13T15:13:01.268859651Z"
+    description: Multi-Cloud Object Storage
+    digest: 1d700dfce72ca051904bf1c0ac6130b143b94db050cb1461cd64673b86e09792
+    home: https://min.io
+    icon: https://min.io/resources/img/logo/MINIO_wordmark.png
+    keywords:
+    - minio
+    - storage
+    - object-storage
+    - s3
+    - cluster
+    maintainers:
+    - email: dev@minio.io
+      name: MinIO, Inc
+    name: minio
+    sources:
+    - https://github.com/minio/minio
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/minio-5.0.15/minio-5.0.15.tgz
+    version: 5.0.15
+  mysql:
+  - annotations:
+      category: Database
+      images: |
+        - name: mysql
+          image: docker.io/bitnami/mysql:8.0.35-debian-11-r2
+        - name: mysqld-exporter
+          image: docker.io/bitnami/mysqld-exporter:0.15.1-debian-11-r0
+        - name: os-shell
+          image: docker.io/bitnami/os-shell:11-debian-11-r93
+      licenses: Apache-2.0
+    apiVersion: v2
+    appVersion: 8.0.35
+    created: "2024-01-13T15:13:01.381148013Z"
+    dependencies:
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: MySQL is a fast, reliable, scalable, and easy to use open source
+      relational database system. Designed to handle mission-critical, heavy-load
+      production applications.
+    digest: 43d5ac1c2118dbe33a677d30bd7420e04f5229f0b56717c9fd659a6d83f54d6e
+    home: https://bitnami.com
+    icon: https://bitnami.com/assets/stacks/mysql/img/mysql-stack-220x234.png
+    keywords:
+    - mysql
+    - database
+    - sql
+    - cluster
+    - high availability
+    maintainers:
+    - name: VMware, Inc.
+      url: https://github.com/bitnami/charts
+    name: mysql
+    sources:
+    - https://github.com/bitnami/charts/tree/main/bitnami/mysql
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/mysql-9.16.1/mysql-9.16.1.tgz
+    version: 9.16.1
+  openvpn-xor:
+  - annotations:
+      xor_version: 4.0.0beta13
+    apiVersion: v2
+    appVersion: v2.6.8
+    created: "2024-01-13T15:13:01.48695197Z"
+    description: A Helm chart for deploying OpenVPN with the XOR patch
+    digest: b77bf060bfc58d31a5c786d5baa5a8ce1023a80123fd00f1f56dbcfe71847d3c
+    keywords:
+    - OpenVPN
+    - VPN
+    - XOR
+    maintainers:
+    - email: allanger@zohomail.com
+      name: allanger
+      url: https://badhouseplants.net
+    name: openvpn-xor
+    sources:
+    - https://git.badhouseplants.net/allanger/container-openvpn
+    - https://github.com/kylemanna/docker-openvpn
+    - https://github.com/Tunnelblick/Tunnelblick
+    - https://github.com/OpenVPN/openvpn
+    type: application
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/openvpn-xor-1.1.0/openvpn-xor-1.1.0.tgz
+    version: 1.1.0
+  postgresql:
+  - annotations:
+      category: Database
+      images: |
+        - name: os-shell
+          image: docker.io/bitnami/os-shell:11-debian-11-r93
+        - name: postgres-exporter
+          image: docker.io/bitnami/postgres-exporter:0.15.0-debian-11-r5
+        - name: postgresql
+          image: docker.io/bitnami/postgresql:16.1.0-debian-11-r19
+      licenses: Apache-2.0
+    apiVersion: v2
+    appVersion: 16.1.0
+    created: "2024-01-13T15:13:01.610635904Z"
+    dependencies:
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: PostgreSQL (Postgres) is an open source object-relational database
+      known for reliability and data integrity. ACID-compliant, it supports foreign
+      keys, joins, views, triggers and stored procedures.
+    digest: e507cc2715de479416bfdd193e83d185132b2f1f1ea1fb3b743d5600a8dd3196
+    home: https://bitnami.com
+    icon: https://bitnami.com/assets/stacks/postgresql/img/postgresql-stack-220x234.png
+    keywords:
+    - postgresql
+    - postgres
+    - database
+    - sql
+    - replication
+    - cluster
+    maintainers:
+    - name: VMware, Inc.
+      url: https://github.com/bitnami/charts
+    name: postgresql
+    sources:
+    - https://github.com/bitnami/charts/tree/main/bitnami/postgresql
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/postgresql-13.2.29/postgresql-13.2.29.tgz
+    version: 13.2.29
+  promtail:
+  - apiVersion: v2
+    appVersion: 2.9.2
+    created: "2024-01-13T15:13:01.733371212Z"
+    description: Promtail is an agent which ships the contents of local logs to a
+      Loki instance
+    digest: 2378b9a02f38fbca495b95ae7f5401b1cc47bb709bfa28a1c0a8ece360c12ddd
+    home: https://grafana.com/loki
+    icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
+    maintainers:
+    - email: lokiproject@googlegroups.com
+      name: Loki Maintainers
+    - name: unguiculus
+    name: promtail
+    sources:
+    - https://github.com/grafana/loki
+    - https://grafana.com/oss/loki/
+    - https://grafana.com/docs/loki/latest/
+    type: application
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/promtail-6.15.3/promtail-6.15.3.tgz
+    version: 6.15.3
+  raw:
+  - annotations:
+      artifacthub.io/changes: |
+        - "[Changed]: Bump Dependency library to 3.0.0-rc.3"
+      artifacthub.io/containsSecurityUpdates: "false"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2024-01-13T15:13:01.84555037Z"
+    dependencies:
+    - name: library
+      repository: https://buttahtoast.github.io/helm-charts/
+      version: 3.0.0-rc.3
+    description: Render raw kubernetes manifests managed by a helm release
+    digest: 24beb4d089ca0c2890416cae0b1164620b3fc557a9f8dd549d5dd7fd8d5a3b8b
+    home: https://github.com/bedag/helm-charts/tree/master/charts/raw
+    icon: https://www.bedag.ch/wGlobal/wGlobal/layout/images/logo.svg
+    keywords:
+    - raw
+    - templates
+    - resources
+    maintainers:
+    - email: sre@bedag.ch
+      name: SRE
+    name: raw
+    sources:
+    - https://github.com/bedag/helm-charts/tree/master/charts/raw
+    type: application
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/raw-2.0.0/raw-2.0.0.tgz
+    version: 2.0.0
+  redis:
+  - annotations:
+      category: Database
+      images: |
+        - name: os-shell
+          image: docker.io/bitnami/os-shell:11-debian-11-r93
+        - name: redis-exporter
+          image: docker.io/bitnami/redis-exporter:1.56.0-debian-11-r0
+        - name: redis-sentinel
+          image: docker.io/bitnami/redis-sentinel:7.2.4-debian-11-r0
+        - name: redis
+          image: docker.io/bitnami/redis:7.2.4-debian-11-r0
+      licenses: Apache-2.0
+    apiVersion: v2
+    appVersion: 7.2.4
+    created: "2024-01-13T15:13:01.982383077Z"
+    dependencies:
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: Redis(R) is an open source, advanced key-value store. It is often
+      referred to as a data structure server since keys can contain strings, hashes,
+      lists, sets and sorted sets.
+    digest: c500861590490bd561ef7a9b945caa8a1407b7612ae1bff4a9fefb14a7174c8c
+    home: https://bitnami.com
+    icon: https://bitnami.com/assets/stacks/redis/img/redis-stack-220x234.png
+    keywords:
+    - redis
+    - keyvalue
+    - database
+    maintainers:
+    - name: VMware, Inc.
+      url: https://github.com/bitnami/charts
+    name: redis
+    sources:
+    - https://github.com/bitnami/charts/tree/main/bitnami/redis
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/redis-18.6.3/redis-18.6.3.tgz
+    version: 18.6.3
+  reflector:
+  - apiVersion: v2
+    appVersion: 7.1.238
+    created: "2024-01-13T15:13:02.091325569Z"
+    description: A Helm chart to deploy Reflector
+    digest: 7c0280c043ce80cdae8cc13f950d30c5937cf2571419757e967fd54f828ad48a
+    home: https://github.com/emberstack/kubernetes-reflector
+    icon: https://raw.githubusercontent.com/emberstack/CDN/master/Projects/ES.FX/es.fx.1.0.0.0.png
+    keywords:
+    - reflector
+    - controller
+    - copy
+    - secrets
+    - configmaps
+    - cert-manager
+    - certificates
+    maintainers:
+    - email: helm-charts@emberstack.com
+      name: winromulus
+    name: reflector
+    sources:
+    - https://github.com/emberstack/kubernetes-reflector
+    type: application
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/reflector-7.1.238/reflector-7.1.238.tgz
+    version: 7.1.238
+  tandoor:
+  - annotations:
+      artifacthub.io/alternativeName: tandoor-recipes
+      artifacthub.io/changes: |-
+        - kind: changed
+          description: Update vabene1111/recipes docker tag to v1.5.10
+      artifacthub.io/links: |-
+        - name: App Source
+          url: https://github.com/TandoorRecipes/recipes
+        - name: Chart Source
+          url: https://github.com/gabe565/charts/tree/main/charts/tandoor
+    apiVersion: v2
+    appVersion: 1.5.10
+    created: "2024-01-13T15:13:02.216439309Z"
+    dependencies:
+    - name: common
+      repository: https://bjw-s.github.io/helm-charts
+      version: 1.5.1
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 12.12.10
+    description: Application for managing recipes, planning meals, building shopping
+      lists and much much more!
+    digest: b1e74306a00fe127c92ccd40adc332bd3c6ddaa9e42e6f1789c16e16aa83cf7f
+    home: https://charts.gabe565.com/charts/tandoor/
+    icon: https://raw.githubusercontent.com/vabene1111/recipes/master/docs/logo_color.svg
+    keywords:
+    - recipes
+    - cookbook
+    - cooking
+    - meal-planner
+    kubeVersion: '>=1.22.0-0'
+    name: tandoor
+    sources:
+    - https://github.com/TandoorRecipes/recipes
+    type: application
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/tandoor-0.8.11/tandoor-0.8.11.tgz
+    version: 0.8.11
+  vaultwarden:
+  - apiVersion: v2
+    appVersion: 1.30.1
+    created: "2024-01-13T15:13:02.328486355Z"
+    description: Unofficial Bitwarden compatible server written in Rust, formerly
+      known as bitwarden_rs
+    digest: b13e6f637c27042a1a9457f1d2fb497e2cf8eda412a3814ed51e0af17ee24ded
+    home: https://github.com/dani-garcia/vaultwarden/tree/main
+    keywords:
+    - vaultwarden
+    - bitwarden
+    - bitwarden_rs
+    maintainers:
+    - email: allanger@badhouseplants.net
+      name: Nikolai Rodionov
+      url: https://badhouseplants.net
+    name: vaultwarden
+    sources:
+    - https://github.com/dani-garcia/vaultwarden/tree/main
+    type: application
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/vaultwarden-1.1.0/vaultwarden-1.1.0.tgz
+    version: 1.1.0
+  woodpecker:
+  - apiVersion: v2
+    appVersion: 2.1.1
+    created: "2024-01-13T15:13:02.471877597Z"
+    dependencies:
+    - condition: server.enabled
+      name: server
+      repository: ""
+      version: 1.0.0
+    - condition: agent.enabled
+      name: agent
+      repository: ""
+      version: 0.2.0
+    description: A Helm chart for Woodpecker CI
+    digest: c964069f49eacf42c48a02efb0907077d6db50d43f068325144cd90d284a13b7
+    home: https://woodpecker-ci.org/
+    icon: https://avatars.githubusercontent.com/u/84780935?s=200&v=4
+    keywords:
+    - continuous-delivery
+    - continuous-deployment
+    - continuous-integration
+    - docker
+    - go
+    - kubernetes
+    maintainers:
+    - email: owner@woodpecker-ci.org
+      name: Woodpecker Maintainers
+      url: https://github.com/woodpecker-ci
+    name: woodpecker
+    sources:
+    - https://github.com/woodpecker-ci/woodpecker.git
+    - https://github.com/woodpecker-ci/helm.git
+    type: application
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/woodpecker-1.0.3/woodpecker-1.0.3.tgz
+    version: 1.0.3
+  wordpress:
+  - annotations:
+      category: CMS
+      images: |
+        - name: apache-exporter
+          image: docker.io/bitnami/apache-exporter:1.0.5-debian-11-r1
+        - name: os-shell
+          image: docker.io/bitnami/os-shell:11-debian-11-r93
+        - name: wordpress
+          image: docker.io/bitnami/wordpress:6.4.2-debian-11-r14
+      licenses: Apache-2.0
+    apiVersion: v2
+    appVersion: 6.4.2
+    created: "2024-01-13T15:13:02.607502523Z"
+    dependencies:
+    - condition: memcached.enabled
+      name: memcached
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 6.x.x
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 15.x.x
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: WordPress is the world's most popular blogging and content management
+      platform. Powerful yet simple, everyone from students to global corporations
+      use it to build beautiful, functional websites.
+    digest: bc2f3a8f5f1c5dfef8b0ab1ce93dbbd27ae9a3ad1b08d31944e4e743af385bb1
+    home: https://bitnami.com
+    icon: https://bitnami.com/assets/stacks/wordpress/img/wordpress-stack-220x234.png
+    keywords:
+    - application
+    - blog
+    - cms
+    - http
+    - php
+    - web
+    - wordpress
+    maintainers:
+    - name: VMware, Inc.
+      url: https://github.com/bitnami/charts
+    name: wordpress
+    sources:
+    - https://github.com/bitnami/charts/tree/main/bitnami/wordpress
+    urls:
+    - https://github.com/allanger/badhouseplants-chart/releases/download/wordpress-19.0.7/wordpress-19.0.7.tgz
+    version: 19.0.7
+generated: "2024-01-13T15:13:02.607517341Z"
