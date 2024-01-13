@@ -1,8 +1,6 @@
 - repository: drone
   name: drone
   version: latest
-  patches:
-    - name: yamlfmt
   mirrors:
     - badhouseplants-git
 - repository: drone
